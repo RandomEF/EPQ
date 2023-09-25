@@ -4,11 +4,44 @@
 // Create a RenderTexture with enableRandomWrite flag and set it
 // with cs.SetTexture
 RWTexture2D<float4> Result;
+float4x4 CameraToWorld;
+float4x4 CameraInverseProjection;
+Texture2D<float4> SkyboxTexture;
+SamplerState samplerSkyboxTexture;
+static const float PI = 3.14159265f;
+
+struct Ray {
+    float3 origin;
+    float3 direction;
+};
+
+Ray CreateRay(float3 origin, float3 direction){
+    Ray ray;
+    ray.origin = origin;
+    ray.direction = direction;
+    return ray;
+}
+
+Ray CreateCameraRay(float2 UV){
+    float3 origin = mul(CameraToWorld, float4(0.0f, 0.0f, 0.0f, 1.0f)).xyz; //Camera origin to world space
+
+    float3 direction = mul(CameraInverseProjection, float4(UV, 0.0f, 1.0f)).xyz; //Invert perspective projection of view space pos
+    direction = mul(CameraToWorld, float4(direction, 0.0f)).xyz; //Direction from camera to world space
+    direction = normalize(direction); //Normalize
+
+    return CreateRay(origin, direction);
+}
 
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // TODO: insert actual code here!
+    uint width, height;
+    Result.GetDimensions(width, height);
+    float2 UV = float2((id.xy + float2(0.5f, 0.5f)) / float2(width, height) * 2.0f - 1.0f); //Pixel to -1,1 range
 
-    Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+    Ray ray = CreateCameraRay(UV);
+
+    float phi = atan2(ray.direction.x, -ray.direction.z) / -PI * 0.5f;
+    float theta = acos(ray.direction.y) / -PI;
+    Result[id.xy] = SkyboxTexture.SampleLevel(samplerSkyboxTexture, float2(phi, theta), 0);
 }
