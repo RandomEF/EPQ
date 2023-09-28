@@ -5,7 +5,12 @@ public class RayTracingMaster : MonoBehaviour
     public ComputeShader RayTracingShader;
     private RenderTexture target;
     public Texture SkyboxTexture;
+    private Camera _camera;
 
+    private void Awake(){
+        _camera = GetComponent<Camera>();
+    }
+    
     private void InitRenderTexture(){
         if (target == null || target.width != Screen.width || target.height != Screen.height){
             if (target != null){
@@ -34,15 +39,9 @@ public class RayTracingMaster : MonoBehaviour
         Render(dest);
     }
 
-    private Camera _camera;
-    
-    private void Awake(){
-        _camera = GetComponent<Camera>();
-    }
-
     private void SetShaderParameters(){
-        RayTracingShader.SetMatrix("CameraToWorld", _camera.cameraToWorldMatrix);
-        RayTracingShader.SetMatrix("CameraInverseProjection", _camera.projectionMatrix.inverse);
-        RayTracingShader.SetTexture(0, "SkyboxTexture", SkyboxTexture);
+        RayTracingShader.SetMatrix("_CameraToWorld", _camera.cameraToWorldMatrix);
+        RayTracingShader.SetMatrix("_CameraInverseProjection", _camera.projectionMatrix.inverse);
+        RayTracingShader.SetTexture(0, "_SkyboxTexture", SkyboxTexture);
     }
 }
