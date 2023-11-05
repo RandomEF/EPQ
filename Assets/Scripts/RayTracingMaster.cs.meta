@@ -5,6 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - RayTracingShader: {fileID: 7200000, guid: 31470d12d9b258e4bac1d6b985d0a3e7, type: 3}
+  - SkyboxTexture: {fileID: 2800000, guid: 1ef93574cf713054c9fb66f1292454cf, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

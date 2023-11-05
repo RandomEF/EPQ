@@ -20,6 +20,12 @@ struct RayHit {
     float3 position;
     float3 normal;
     float distance;
+    float3 colour;
+};
+
+struct Sphere {
+    float3 position;
+    float radius;
 };
 
 Ray CreateRay(float3 origin, float3 direction){
@@ -44,27 +50,73 @@ RayHit CreateRayHit(){
     hit.position = float3(0.0f, 0.0f, 0.0f);
     hit.normal = float3(0.0f, 0.0f, 0.0f);
     hit.distance = 1.#INF;
+    hit.colour = float3(0.0f, 0.0f, 0.0f);
     return hit;
 }
 
 void IntersectGroundPlane(Ray ray, inout RayHit bestHit){ // inout allows the original variable to be rewritten with the data inside the function
-    float t = -ray.origin.y / ray.direction.y;
-    if (t > 0 && t < bestHit.distance){
-        bestHit.distance = t;
-        bestHit.position = ray.origin + t * ray.direction;
+    float angleSign = -ray.origin.y / ray.direction.y;
+    if (angleSign > 0 && angleSign < bestHit.distance){
+        bestHit.distance = angleSign;
+        bestHit.position = ray.origin + angleSign * ray.direction;
         bestHit.normal = float3(0.0f, 1.0f, 0.0f);
+        bestHit.colour = float3(0.85f, 0.85f, 0.85f);
     }
+}
+
+void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
+    float3 distance = ray.origin - sphere.position;
+    float projectedDistanceOnRay = dot(ray.direction, distance);
+    float radiusSquared = sphere.radius * sphere.radius;
+    float distanceMidpointToCentre = distance * distance - projectedDistanceOnRay * projectedDistanceOnRay;
+    if (length(distance) < 0.0f){
+        return;
+    }
+    if (distanceMidpointToCentre > radiusSquared){
+        return;
+    }
+    if (distanceMidpointToCentre == radiusSquared){
+        bestHit.distance = projectedDistanceOnRay;
+        bestHit.position = ray.origin + projectedDistanceOnRay * ray.direction;
+        bestHit.normal = normalize(bestHit.position - sphere.position); 
+        bestHit.colour = float3(0.1f, 0.2f, 0.3f);
+    }
+    if (distanceMidpointToCentre < radiusSquared){
+        float distanceFromPointToMid = sqrt(radiusSquared - distance * distance + projectedDistanceOnRay * projectedDistanceOnRay);
+        float pointCheck = projectedDistanceOnRay - distanceFromPointToMid;
+        if (pointCheck > 0.0f && pointCheck < bestHit.distance) {
+            bestHit.distance = projectedDistanceOnRay - distanceFromPointToMid;
+            bestHit.position = ray.origin +  (projectedDistanceOnRay - distanceFromPointToMid) * ray.direction;
+            bestHit.normal = normalize(bestHit.position - sphere.position);
+            bestHit.colour = float3(0.1f, 0.2f, 0.3f);
+        }
+        if (pointCheck <= 0.0f && pointCheck < bestHit.distance) {
+            bestHit.distance = projectedDistanceOnRay + distanceFromPointToMid;
+            bestHit.position = ray.origin +  (projectedDistanceOnRay + distanceFromPointToMid) * ray.direction;
+            bestHit.normal = normalize(bestHit.position - sphere.position);
+            bestHit.colour = float3(0.1f, 0.2f, 0.3f);
+        }
+    }
+}
+
+Sphere CreateSphere(float3 position, float radius){
+    Sphere sphere;
+    sphere.position = position;
+    sphere.radius = radius;
+    return sphere;
 }
 
 RayHit Trace(Ray ray){
     RayHit bestHit = CreateRayHit();
     IntersectGroundPlane(ray, bestHit);
+    Sphere sphere = CreateSphere(float3(0.0f, 3.0f, 0.0f), 0.1f);
+    IntersectSphere(ray, bestHit, sphere);
     return bestHit;
 }
 
 float3 Shade(inout Ray ray, RayHit hit){
     if (hit.distance < 1.#INF){
-        return hit.normal = 0.85f;                  // Set floor to Grey colour
+        return hit.colour;                  // Return the colour if something was hit
     } else {                                        // Take colour from skybox
         float theta = acos(ray.direction.y) / -PI;
         float phi = atan2(ray.direction.x, -ray.direction.z) / -PI * 0.5f;
