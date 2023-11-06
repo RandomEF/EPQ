@@ -72,16 +72,12 @@ void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
     if (length(distance) < 0.0f){
         return;
     }
-    if (distanceMidpointToCentre > radiusSquared){
-        return;
-    }
     if (distanceMidpointToCentre == radiusSquared){
         bestHit.distance = projectedDistanceOnRay;
         bestHit.position = ray.origin + projectedDistanceOnRay * ray.direction;
         bestHit.normal = normalize(bestHit.position - sphere.position); 
         bestHit.colour = float3(0.1f, 0.2f, 0.3f);
-    }
-    if (distanceMidpointToCentre < radiusSquared){
+    } else{
         float3 distanceFromPointToMid = sqrt(radiusSquared - distance * distance + projectedDistanceOnRay * projectedDistanceOnRay);
         float pointCheck = projectedDistanceOnRay - distanceFromPointToMid > 0 ? projectedDistanceOnRay - distanceFromPointToMid : projectedDistanceOnRay + distanceFromPointToMid;
         if (pointCheck > 0 && pointCheck < bestHit.distance) {
@@ -102,7 +98,7 @@ Sphere CreateSphere(float3 position, float radius){
 
 RayHit Trace(Ray ray){
     RayHit bestHit = CreateRayHit();
-    Sphere sphere = CreateSphere(float3(0.0f, 3.0f, 0.0f), 0.1f);
+    Sphere sphere = CreateSphere(float3(0.0f, 0.5f, 0.0f), 0.5f);
     IntersectSphere(ray, bestHit, sphere);
     IntersectGroundPlane(ray, bestHit);
     return bestHit;
