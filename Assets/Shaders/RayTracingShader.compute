@@ -66,9 +66,9 @@ void IntersectGroundPlane(Ray ray, inout RayHit bestHit){ // inout allows the or
 
 void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
     float3 distance = ray.origin - sphere.position;
-    float projectedDistanceOnRay = dot(ray.direction, distance);
+    float projectedDistanceOnRay = -dot(ray.direction, distance);
     float radiusSquared = sphere.radius * sphere.radius;
-    float distanceMidpointToCentre = distance * distance - projectedDistanceOnRay * projectedDistanceOnRay;
+    float distanceMidpointToCentre = dot(distance, distance) - projectedDistanceOnRay * projectedDistanceOnRay;
     if (length(distance) < 0.0f){
         return;
     }
@@ -82,17 +82,11 @@ void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
         bestHit.colour = float3(0.1f, 0.2f, 0.3f);
     }
     if (distanceMidpointToCentre < radiusSquared){
-        float distanceFromPointToMid = sqrt(radiusSquared - distance * distance + projectedDistanceOnRay * projectedDistanceOnRay);
-        float pointCheck = projectedDistanceOnRay - distanceFromPointToMid;
-        if (pointCheck > 0.0f && pointCheck < bestHit.distance) {
-            bestHit.distance = projectedDistanceOnRay - distanceFromPointToMid;
-            bestHit.position = ray.origin +  (projectedDistanceOnRay - distanceFromPointToMid) * ray.direction;
-            bestHit.normal = normalize(bestHit.position - sphere.position);
-            bestHit.colour = float3(0.1f, 0.2f, 0.3f);
-        }
-        if (pointCheck <= 0.0f && pointCheck < bestHit.distance) {
-            bestHit.distance = projectedDistanceOnRay + distanceFromPointToMid;
-            bestHit.position = ray.origin +  (projectedDistanceOnRay + distanceFromPointToMid) * ray.direction;
+        float3 distanceFromPointToMid = sqrt(radiusSquared - distance * distance + projectedDistanceOnRay * projectedDistanceOnRay);
+        float pointCheck = projectedDistanceOnRay - distanceFromPointToMid > 0 ? projectedDistanceOnRay - distanceFromPointToMid : projectedDistanceOnRay + distanceFromPointToMid;
+        if (pointCheck > 0 && pointCheck < bestHit.distance) {
+            bestHit.distance = pointCheck;
+            bestHit.position = ray.origin + pointCheck * ray.direction;
             bestHit.normal = normalize(bestHit.position - sphere.position);
             bestHit.colour = float3(0.1f, 0.2f, 0.3f);
         }
@@ -108,9 +102,9 @@ Sphere CreateSphere(float3 position, float radius){
 
 RayHit Trace(Ray ray){
     RayHit bestHit = CreateRayHit();
-    IntersectGroundPlane(ray, bestHit);
     Sphere sphere = CreateSphere(float3(0.0f, 3.0f, 0.0f), 0.1f);
     IntersectSphere(ray, bestHit, sphere);
+    IntersectGroundPlane(ray, bestHit);
     return bestHit;
 }
 
