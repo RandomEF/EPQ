@@ -69,6 +69,7 @@ void IntersectGroundPlane(Ray ray, inout RayHit bestHit){ // inout allows the or
 }
 
 void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
+/*
     float3 distance = ray.origin - sphere.position;
     float projectedDistanceOnRay = -dot(ray.direction, distance);
     float radiusSquared = sphere.radius * sphere.radius;
@@ -84,7 +85,21 @@ void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
             bestHit.position = ray.origin + pointCheck * ray.direction;
             bestHit.normal = normalize(bestHit.position - sphere.position);
             bestHit.colour = float3(0.1f, 0.2f, 0.3f);
-        }
+*/
+    float3 distance = ray.origin - sphere.position;
+    float p = dot(ray.direction, distance);
+    float q = dot(distance, distance) - sphere.radius * sphere.radius;
+    float discriminant = p * p - q;
+    if (discriminant < 0){
+        return;
+    }
+    float discriminantRoot = sqrt(discriminant);
+    float pointCheck = -p - discriminantRoot > 0 ? -p - discriminantRoot : -p + discriminantRoot;
+    if (pointCheck > 0 && pointCheck < bestHit.distance) {
+        bestHit.distance = pointCheck;
+        bestHit.position = ray.origin + pointCheck * ray.direction;
+        bestHit.normal = normalize(bestHit.position - sphere.position);
+        bestHit.colour = float3(0.1f, 0.2f, 0.3f);
     }
 }
 
@@ -97,11 +112,13 @@ Sphere CreateSphere(float3 position, float radius){
 
 RayHit Trace(Ray ray){
     RayHit bestHit = CreateRayHit();
-    Sphere sphere = CreateSphere(float3(0.0f, 1.5f, 0.0f), 1.0f);
-    IntersectSphere(ray, bestHit, sphere);
-    Sphere sphere2 = CreateSphere(float3(1.0f, 1.5f, 2.0f), 0.5f);
-    IntersectSphere(ray, bestHit, sphere2);
     IntersectGroundPlane(ray, bestHit);
+    for (int i = 0; i < 10; i++){
+        for (int j = 0; j < 10; j++){
+            Sphere sphere = CreateSphere(float3(2 * i, 0.5f * 0.001f, 2 * j), 0.5f);
+            IntersectSphere(ray, bestHit, sphere);   
+        }
+    }
     return bestHit;
 }
 
