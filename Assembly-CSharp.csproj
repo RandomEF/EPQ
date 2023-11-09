@@ -50,7 +50,7 @@
     <UnityVersion>2022.3.1f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\eshan\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\eshan\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.3\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\EshanStuff\Game Creation\Unity\Unity Editors\2022.3.1f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\EshanStuff\Game Creation\Unity\Unity Editors\2022.3.1f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\RayTracingShader.compute" />
+    <None Include="Assets\Shaders\AddShader.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
