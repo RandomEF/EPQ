@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+//using UnityEngine.Windows;
 
 public class RayTracingMaster : MonoBehaviour
 {
@@ -8,15 +11,31 @@ public class RayTracingMaster : MonoBehaviour
     private Camera _camera;
     private uint _currentSample = 0;
     private Material _addMaterial;
+    [SerializeField] float maxBounceNumber = 4;
+    [SerializeField] Light directionalLight;
+    private List<Transform> transformsWatching = new List<Transform>();
 
     private void Awake(){
         _camera = GetComponent<Camera>();
+        transformsWatching.Add(transform);
+        transformsWatching.Add(directionalLight.transform);
     }
     
     private void Update() {
-        if (transform.hasChanged){
-            _currentSample = 0;
-            transform.hasChanged = false;
+        SetShaderParamsUpdate();
+        if (Input.GetKeyDown(KeyCode.Equals)){
+            maxBounceNumber++;
+            transform.hasChanged = true;
+        } else if (Input.GetKeyDown(KeyCode.Minus) && maxBounceNumber != 0){
+            maxBounceNumber--;
+            transform.hasChanged = true;
+        }
+        foreach (Transform transformSelected in transformsWatching){
+            if (transformSelected.hasChanged || transform.hasChanged){
+                _currentSample = 0;
+                transform.hasChanged = false;
+                transformSelected.hasChanged = false;
+            }
         }
     }
 
@@ -59,5 +78,12 @@ public class RayTracingMaster : MonoBehaviour
         RayTracingShader.SetMatrix("_CameraInverseProjection", _camera.projectionMatrix.inverse);
         RayTracingShader.SetTexture(0, "_SkyboxTexture", SkyboxTexture);
         RayTracingShader.SetVector("_PixelOffset", new Vector2(Random.value, Random.value));
+        RayTracingShader.SetFloat("_maxBounceNumber", maxBounceNumber);
+        Vector3 lightDirection = directionalLight.transform.forward;
+        RayTracingShader.SetVector("_DirectionalLight", new Vector4(lightDirection.x, lightDirection.y, lightDirection.z, directionalLight.intensity));
+    }
+
+    private void SetShaderParamsUpdate(){
+        RayTracingShader.SetFloat("_maxBounceNumber", maxBounceNumber);
     }
 }

@@ -10,7 +10,9 @@ float4x4 _CameraInverseProjection;
 Texture2D<float4> _SkyboxTexture;
 SamplerState sampler_SkyboxTexture; // sampler + _SkyboxTexture
 static const float PI = 3.14159265f;
+float4 _DirectionalLight;
 
+float _maxBounceNumber;
 float2 _PixelOffset;
 
 struct Ray {
@@ -23,7 +25,6 @@ struct RayHit {
     float3 position;
     float3 normal;
     float distance;
-    float3 colour;
 };
 
 struct Sphere {
@@ -54,7 +55,6 @@ RayHit CreateRayHit(){
     hit.position = float3(0.0f, 0.0f, 0.0f);
     hit.normal = float3(0.0f, 0.0f, 0.0f);
     hit.distance = 1.#INF;
-    hit.colour = float3(0.0f, 0.0f, 0.0f);
     return hit;
 }
 
@@ -64,7 +64,6 @@ void IntersectGroundPlane(Ray ray, inout RayHit bestHit){ // inout allows the or
         bestHit.distance = angleSign;
         bestHit.position = ray.origin + angleSign * ray.direction;
         bestHit.normal = float3(0.0f, 1.0f, 0.0f);
-        bestHit.colour = float3(0.85f, 0.85f, 0.85f);
     }
 }
 
@@ -84,7 +83,6 @@ void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
             bestHit.distance = pointCheck;
             bestHit.position = ray.origin + pointCheck * ray.direction;
             bestHit.normal = normalize(bestHit.position - sphere.position);
-            bestHit.colour = float3(0.1f, 0.2f, 0.3f);
 */
     float3 distance = ray.origin - sphere.position;
     float p = dot(ray.direction, distance);
@@ -99,7 +97,6 @@ void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
         bestHit.distance = pointCheck;
         bestHit.position = ray.origin + pointCheck * ray.direction;
         bestHit.normal = normalize(bestHit.position - sphere.position);
-        bestHit.colour = float3(0.1f, 0.2f, 0.3f);
     }
 }
 
@@ -124,11 +121,19 @@ RayHit Trace(Ray ray){
 
 float3 Shade(inout Ray ray, RayHit hit){
     if (hit.distance < 1.#INF){
-        float3 specular = float3(0.6f, 0.6f, 0.6f);
+        float3 specular = float3(0.04f, 0.04f, 0.04f);
+        float3 albedo = float3(0.8f, 0.8f, 0.8f);
+
         ray.origin = hit.position + hit.normal * 0.001f;
         ray.direction = reflect(ray.direction, hit.normal);
         ray.energy *= specular;
-        return float3(0.0f, 0.0f, 0.0f);
+        bool shadow = false;
+        Ray shadowRay = CreateRay(hit.position + hit.normal * 0.001f, -1 * _DirectionalLight.xyz);
+        RayHit shadowRayHit = Trace(shadowRay);
+        if (shadowRayHit.distance != 1.#INF){
+            return float3(0.0f, 0.0f, 0.0f);
+        }
+        return saturate(dot(hit.normal, _DirectionalLight.xyz) * -1) * _DirectionalLight * albedo;
     } else {                                        // Take colour from skybox
         ray.energy = 0.0f;
         float theta = acos(ray.direction.y) / -PI;
@@ -146,7 +151,7 @@ void CSMain (uint3 id : SV_DispatchThreadID) {
     Ray ray = CreateCameraRay(uv);
 
     float3 result = float3(0, 0, 0);
-    for (int i = 0; i < 8; i++){
+    for (int i = 0; i <= _maxBounceNumber; i++){
         RayHit hit = Trace(ray);
         result += ray.energy * Shade(ray, hit);
         if (!any(ray.energy)){
