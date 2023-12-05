@@ -357,6 +357,8 @@
 -analyzer:"C:/EshanStuff/Game Creation/Unity/Unity Editors/2022.3.1f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Movement.cs"
 "Assets/Scripts/RayTracingMaster.cs"
+"Assets/Scripts/Tools/ScreenSplit.cs"
+"Assets/Scripts/Tools/Specular Proof.cs"
 -langversion:9.0
 
 /deterministic

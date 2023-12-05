@@ -25,12 +25,18 @@ struct RayHit {
     float3 position;
     float3 normal;
     float distance;
+    float3 specular;
+    float3 albedo;
 };
 
 struct Sphere {
     float3 position;
     float radius;
+    float3 specular;
+    float3 albedo;
 };
+
+StructuredBuffer<Sphere> _Spheres;
 
 Ray CreateRay(float3 origin, float3 direction){
     Ray ray;
@@ -55,6 +61,8 @@ RayHit CreateRayHit(){
     hit.position = float3(0.0f, 0.0f, 0.0f);
     hit.normal = float3(0.0f, 0.0f, 0.0f);
     hit.distance = 1.#INF;
+    hit.specular = float3(0.0f, 0.0f, 0.0f);
+    hit.albedo = float3(0.0f, 0.0f, 0.0f);
     return hit;
 }
 
@@ -64,13 +72,15 @@ void IntersectGroundPlane(Ray ray, inout RayHit bestHit){ // inout allows the or
         bestHit.distance = angleSign;
         bestHit.position = ray.origin + angleSign * ray.direction;
         bestHit.normal = float3(0.0f, 1.0f, 0.0f);
+        bestHit.albedo = float3(0.5f, 0.5f, 0.5f);
+        bestHit.specular = float3(0.4f, 0.4f, 0.4f);
     }
 }
 
 void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
 /*
     float3 distance = ray.origin - sphere.position;
-    float projectedDistanceOnRay = -dot(ray.direction, distance);
+    float projectedDistanceOnRay = dot(ray.direction, distance);
     float radiusSquared = sphere.radius * sphere.radius;
     float distanceMidpointToCentre = dot(distance, distance) - projectedDistanceOnRay * projectedDistanceOnRay;
     if (length(distance) < 0.0f){
@@ -85,18 +95,20 @@ void IntersectSphere(Ray ray, inout RayHit bestHit, Sphere sphere){
             bestHit.normal = normalize(bestHit.position - sphere.position);
 */
     float3 distance = ray.origin - sphere.position;
-    float p = dot(ray.direction, distance);
-    float q = dot(distance, distance) - sphere.radius * sphere.radius;
-    float discriminant = p * p - q;
+    float b = dot(ray.direction, distance);
+    float c = dot(distance, distance) - sphere.radius * sphere.radius;
+    float discriminant = b * b - c;
     if (discriminant < 0){
         return;
     }
     float discriminantRoot = sqrt(discriminant);
-    float pointCheck = -p - discriminantRoot > 0 ? -p - discriminantRoot : -p + discriminantRoot;
+    float pointCheck = -b - discriminantRoot > 0 ? -b - discriminantRoot : -b + discriminantRoot;
     if (pointCheck > 0 && pointCheck < bestHit.distance) {
         bestHit.distance = pointCheck;
         bestHit.position = ray.origin + pointCheck * ray.direction;
         bestHit.normal = normalize(bestHit.position - sphere.position);
+        bestHit.specular = sphere.specular;
+        bestHit.albedo = sphere.albedo;
     }
 }
 
@@ -104,25 +116,37 @@ Sphere CreateSphere(float3 position, float radius){
     Sphere sphere;
     sphere.position = position;
     sphere.radius = radius;
+    sphere.specular = float3(0.01f, 0.01f, 0.01f);
+    sphere.albedo = float3(1.0f, 1.0f, 1.0f);
     return sphere;
 }
 
 RayHit Trace(Ray ray){
     RayHit bestHit = CreateRayHit();
     IntersectGroundPlane(ray, bestHit);
+    
+    uint numSpheres, stride;
+    _Spheres.GetDimensions(numSpheres, stride);
+    for (uint i = 0; i < numSpheres; i++){
+        IntersectSphere(ray, bestHit, _Spheres[i]);
+    }
+    /*
     for (int i = 0; i < 10; i++){
         for (int j = 0; j < 10; j++){
-            Sphere sphere = CreateSphere(float3(2 * i, 0.5f * 0.001f, 2 * j), 0.5f);
+            Sphere sphere = CreateSphere(float3(2 * i, 0.5f , 2 * j), 0.5f);
             IntersectSphere(ray, bestHit, sphere);   
         }
-    }
+    }*/
+    
     return bestHit;
 }
 
 float3 Shade(inout Ray ray, RayHit hit){
     if (hit.distance < 1.#INF){
-        float3 specular = float3(0.04f, 0.04f, 0.04f);
-        float3 albedo = float3(0.8f, 0.8f, 0.8f);
+        float3 specular = hit.specular;
+        float3 albedo = hit.albedo;
+        //float3 specular = float3(0.6f, 0.6f, 0.6f);
+        //float3 albedo = float3(0.04f, 0.04f, 0.04f);
 
         ray.origin = hit.position + hit.normal * 0.001f;
         ray.direction = reflect(ray.direction, hit.normal);
@@ -133,7 +157,7 @@ float3 Shade(inout Ray ray, RayHit hit){
         if (shadowRayHit.distance != 1.#INF){
             return float3(0.0f, 0.0f, 0.0f);
         }
-        return saturate(dot(hit.normal, _DirectionalLight.xyz) * -1) * _DirectionalLight * albedo;
+        return saturate(dot(hit.normal, _DirectionalLight.xyz) * -1) * _DirectionalLight.w * albedo;
     } else {                                        // Take colour from skybox
         ray.energy = 0.0f;
         float theta = acos(ray.direction.y) / -PI;
