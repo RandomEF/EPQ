@@ -1,0 +1,47 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> Result;
+float4x4 _CameraToWorld;
+float4x4 _CameraInverseProjection;
+
+struct Ray{
+    float3 origin;
+    float3 direction;
+}
+
+float dot2(float2 length){
+    return dot(length, length);
+}
+float dot2(float3 length){
+    return dot(length, length);
+}
+float ndot(float2 lengthA, float2 lengthB){
+    return lengthA.x * lengthB.x - lengthA.y * lengthB.y;
+}
+
+float SphereSDF(float3 camera, float3 centre, float radius){
+    return distance(camera - centre) - radius;
+}
+
+float CubeSDF(float3 camera, float3 centre, float3 size, float3 radius){
+    float3 pointAbsolution = abs(camera - centre) - size;
+    return length(max(pointAbsolution, 0.0f) + min(max(pointAbsolution.x, max(pointAbsolution.y, pointAbsolution.z)), 0.0f) - radius;
+}
+
+float LineSDF(float3 camera, float3 centre, float3 pointA, float3 pointB, float3 radius){
+    float3 pointToPointA = (camera - centre) - pointA;
+    float3 lengthOfLine = pointB - pointA;
+    float clampedLerp = saturate(dot(pointToPointA, lengthOfLine)/dot2(lengthOfLine));
+    return length(pointToPointA - lengthOfLine * clampedLerp) - radius;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+
+    Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+}
