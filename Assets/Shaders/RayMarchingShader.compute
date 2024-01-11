@@ -3,13 +3,74 @@
 
 // Create a RenderTexture with enableRandomWrite flag and set it
 // with cs.SetTexture
+Texture2D<float4> Source;
 RWTexture2D<float4> Result;
 float4x4 _CameraToWorld;
 float4x4 _CameraInverseProjection;
 
+static const float maxDist = 1000.0f;
+static const float minDist = 0.001f;
+
 struct Ray{
     float3 origin;
     float3 direction;
+};
+
+struct RayHit{
+    float3 colour;
+    float3 normal;
+    float distance;
+};
+
+struct Shape{
+    int shapeType;
+    float3 origin;
+    float3 firstPoint;
+    float3 secondPoint;
+    float3 size;
+    float rounding;
+    float3 colour;
+    int operation;
+    float blendStrength;
+};
+
+StructuredBuffer<Shape> _Shapes;
+
+Shape CreateUnitSphere(){
+    Shape shape;
+    shape.origin = float3(1.0f, 1.0f, 1.0f);
+    shape.firstPoint = float3(0,0,0);
+    shape.secondPoint = float3(0,0,0);
+    shape.shapeType = 0;
+    shape.size = float3(1.0f, 0,0);
+    shape.rounding = 0;
+    shape.colour = float3(1.0f, 1.0f, 1.0f);
+    shape.operation = 0;
+    shape.blendStrength = 0;
+    return shape;
+}
+
+Ray CreateRay(float3 origin, float3 direction){
+    Ray ray;
+    ray.origin = origin;
+    ray.direction = direction;
+    return ray;
+}
+
+Ray CreateCameraRay(float2 uv){
+    float3 origin = mul(_CameraToWorld, float4(0, 0, 0, 1)).xyz;
+    float3 direction = mul(_CameraInverseProjection, float4(uv, 0, 1)).xyz;
+    direction = mul(_CameraToWorld, float4(direction, 0)).xyz;
+    direction = normalize(direction);
+    
+    return CreateRay(origin, direction);
+}
+RayHit CreateRayHit(){
+    RayHit hit;
+    hit.colour = float3(0, 0, 0);
+    hit.normal = float3(0.0f, 0.0f, 0.0f);
+    hit.distance = 0;
+    return hit;
 }
 
 float dot2(float2 length){
@@ -23,12 +84,12 @@ float ndot(float2 lengthA, float2 lengthB){
 }
 
 float SphereSDF(float3 camera, float3 centre, float radius){
-    return distance(camera - centre) - radius;
+    return length(camera - centre) - radius;
 }
 
 float CubeSDF(float3 camera, float3 centre, float3 size, float3 radius){
     float3 pointAbsolution = abs(camera - centre) - size;
-    return length(max(pointAbsolution, 0.0f) + min(max(pointAbsolution.x, max(pointAbsolution.y, pointAbsolution.z)), 0.0f) - radius;
+    return length(max(pointAbsolution, 0.0f) + min(max(pointAbsolution.x, max(pointAbsolution.y, pointAbsolution.z)), 0.0f)) - radius;
 }
 
 float LineSDF(float3 camera, float3 centre, float3 pointA, float3 pointB, float3 radius){
@@ -38,10 +99,78 @@ float LineSDF(float3 camera, float3 centre, float3 pointA, float3 pointB, float3
     return length(pointToPointA - lengthOfLine * clampedLerp) - radius;
 }
 
+float GetDist(Shape shape, float3 camera){
+    if (shape.shapeType == 0){
+        return SphereSDF(camera, shape.origin, shape.size.x);
+    } else if (shape.shapeType == 1){
+        return CubeSDF(camera, shape.origin, shape.size, shape.rounding);
+    } else if (shape.shapeType == 2){
+        return LineSDF(camera, shape.origin, shape.firstPoint, shape.secondPoint, shape.rounding);
+    }
+
+    return maxDist;
+}
+
+float4 Combine(float distA, float distB, float3 colourA, float3 colourB, int operation, float blendStrength){
+    float dist = distA;
+    float3 colour = colourA;
+
+    // Select Nearest
+    if (operation == 0){
+        if (distB < distA){
+            dist = distB;
+            colour = colourB;
+        }
+    }
+
+    return float4(colour, dist);
+}
+
+float4 WholeSceneInfo(float3 view){
+    float globalDist = maxDist;
+    float3 globalColour = 1;
+
+    uint numShapes, stride;
+    _Shapes.GetDimensions(numShapes, stride);
+
+    for (uint i = 0; i < numShapes; i++){
+        Shape shape = _Shapes[i];
+        float shapeDist = GetDist(shape, view);
+        float3 shapeColour = shape.colour;
+
+        float4 globalCombined = Combine(globalDist, shapeDist, globalColour, shapeColour, shape.operation, shape.blendStrength);
+        globalColour = globalCombined.xyz;
+        globalDist = globalCombined.w;
+    }
+
+    return float4(globalColour, globalDist);
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // TODO: insert actual code here!
+    uint width, height;
+    Result.GetDimensions(width, height);
+    float2 uv = float2(id.xy / float2(width, height) * 2.0f - 1.0f);
+    
+    Ray ray = CreateCameraRay(uv);
+    float3 result = float3(0, 0, 0);
+    float rayDist = 0;
+    int marchSteps = 0;
 
-    Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+    while (rayDist < maxDist){
+        marchSteps++;
+        float4 sceneInfo = WholeSceneInfo(ray.origin);
+        float distance = sceneInfo.w;
+
+        if(distance <= minDist){
+            float3 onSurface = ray.origin + ray.direction * distance;
+            float3 colour = sceneInfo.xyz;
+
+            Result[id.xy] = float4(colour, 1);
+        }
+
+        ray.origin += ray.direction * distance;
+        rayDist += distance;
+    }
 }

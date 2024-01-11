@@ -3,7 +3,10 @@ guid: 5e10a3947d577ef41917ef93e6097eca
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - RayMarchingShader: {fileID: 7200000, guid: b9ccd9a75da13cc4ebb81af8c7f1cd3b, type: 3}
+  - SkyboxTexture: {fileID: 2800000, guid: 1ef93574cf713054c9fb66f1292454cf, type: 3}
+  - directionalLight: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

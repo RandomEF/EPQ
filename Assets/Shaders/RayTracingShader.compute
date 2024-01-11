@@ -47,10 +47,10 @@ Ray CreateRay(float3 origin, float3 direction){
 }
 
 Ray CreateCameraRay(float2 UV){
-    float3 origin = mul(_CameraToWorld, float4(0.0f, 0.0f, 0.0f, 1.0f)).xyz; //Camera origin to world space
+    float3 origin = mul(_CameraToWorld, float4(0, 0, 0, 1)).xyz; //Camera origin to world space
 
-    float3 direction = mul(_CameraInverseProjection, float4(UV, 0.0f, 1.0f)).xyz; //Invert perspective projection of view space pos
-    direction = mul(_CameraToWorld, float4(direction, 0.0f)).xyz; //Direction from camera to world space
+    float3 direction = mul(_CameraInverseProjection, float4(UV, 0, 1)).xyz; //Invert perspective projection of view space pos
+    direction = mul(_CameraToWorld, float4(direction, 0)).xyz; //Direction from camera to world space
     direction = normalize(direction); //Normalize
 
     return CreateRay(origin, direction);

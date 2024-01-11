@@ -682,6 +682,7 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 963194231}
   - component: {fileID: 963194232}
+  - component: {fileID: 963194233}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -770,7 +771,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4a3fba998f03de45aff2bf8b74f53ac, type: 3}
   m_Name: 
@@ -796,7 +797,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Height: 0.5
   m_Radius: 0.5
@@ -821,7 +822,7 @@ MonoBehaviour:
   SkyboxTexture: {fileID: 2800000, guid: 1ef93574cf713054c9fb66f1292454cf, type: 3}
   maxBounceNumber: 8
   directionalLight: {fileID: 705507994}
-  useShader: 1
+  useShader: 0
   enableRandomSpheres: 0
   regenerateSpheres: 0
   sphereRadius: {x: 3, y: 8}
@@ -841,6 +842,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 927707472}
   obj: {fileID: 645935762}
+--- !u!114 &963194233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e10a3947d577ef41917ef93e6097eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RayMarchingShader: {fileID: 7200000, guid: b9ccd9a75da13cc4ebb81af8c7f1cd3b, type: 3}
+  SkyboxTexture: {fileID: 2800000, guid: 1ef93574cf713054c9fb66f1292454cf, type: 3}
+  directionalLight: {fileID: 705507994}
+  useShader: 1
 --- !u!1 &988515416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,7 +1181,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401607493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4a3fba998f03de45aff2bf8b74f53ac, type: 3}
   m_Name: 

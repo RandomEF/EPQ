@@ -73,9 +73,8 @@ public class RayTracingMaster : MonoBehaviour
             transform.hasChanged = true;
         }
         foreach (Transform transformSelected in transformsWatching){
-            if (transformSelected.hasChanged || transform.hasChanged){
+            if (transformSelected.hasChanged){
                 _currentSample = 0;
-                transform.hasChanged = false;
                 transformSelected.hasChanged = false;
                 if(!enableRandomSpheres){
                     if(_SphereBuffer != null){
