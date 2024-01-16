@@ -175,6 +175,7 @@ void CSMain (uint3 id : SV_DispatchThreadID) {
     Ray ray = CreateCameraRay(uv);
 
     float3 result = float3(0, 0, 0);
+    
     for (int i = 0; i <= _maxBounceNumber; i++){
         RayHit hit = Trace(ray);
         result += ray.energy * Shade(ray, hit);

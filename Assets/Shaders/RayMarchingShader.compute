@@ -3,11 +3,19 @@
 
 // Create a RenderTexture with enableRandomWrite flag and set it
 // with cs.SetTexture
-Texture2D<float4> Source;
+//Texture2D<float4> Source;
 RWTexture2D<float4> Result;
+//Texture2D<float4> Source;
+
 float4x4 _CameraToWorld;
 float4x4 _CameraInverseProjection;
+float4 _DirectionalLight;
 
+Texture2D<float4> _SkyboxTexture;
+SamplerState sampler_SkyboxTexture;
+
+// Constants
+static const float PI = 3.14159265f;
 static const float maxDist = 1000.0f;
 static const float minDist = 0.001f;
 
@@ -111,7 +119,7 @@ float GetDist(Shape shape, float3 camera){
     return maxDist;
 }
 
-float4 Combine(float distA, float distB, float3 colourA, float3 colourB, int operation, float blendStrength){
+float4 CombineSDF(float distA, float distB, float3 colourA, float3 colourB, int operation, float blendStrength){
     float dist = distA;
     float3 colour = colourA;
 
@@ -138,7 +146,7 @@ float4 WholeSceneInfo(float3 view){
         float shapeDist = GetDist(shape, view);
         float3 shapeColour = shape.colour;
 
-        float4 globalCombined = Combine(globalDist, shapeDist, globalColour, shapeColour, shape.operation, shape.blendStrength);
+        float4 globalCombined = CombineSDF(globalDist, shapeDist, globalColour, shapeColour, shape.operation, shape.blendStrength);
         globalColour = globalCombined.xyz;
         globalDist = globalCombined.w;
     }
@@ -146,17 +154,52 @@ float4 WholeSceneInfo(float3 view){
     return float4(globalColour, globalDist);
 }
 
+float3 EstimateNormal(float3 pointLocation){
+    return normalize(float3(
+        WholeSceneInfo(float3(pointLocation.x + minDist, pointLocation.y, pointLocation.z)).w - WholeSceneInfo(float3(pointLocation.x - minDist, pointLocation.y, pointLocation.z)).w,
+        WholeSceneInfo(float3(pointLocation.x, pointLocation.y + minDist, pointLocation.z)).w - WholeSceneInfo(float3(pointLocation.x, pointLocation.y - minDist, pointLocation.z)).w,
+        WholeSceneInfo(float3(pointLocation.x, pointLocation.y, pointLocation.z + minDist)).w - WholeSceneInfo(float3(pointLocation.x, pointLocation.y, pointLocation.z - minDist)).w
+    ));
+}
+
+float GetShadow(Ray ray, float distanceToPoint){
+    float rayDist = 0;
+    int marchSteps = 0;
+    float shadowIntensity = 0.8f;
+    float brightness = 1;
+
+    while (rayDist < distanceToPoint){
+        marchSteps++;
+        float4 sceneInfo = WholeSceneInfo(ray.origin);
+        float dist = sceneInfo.w;
+        if (dist <= minDist){
+            return shadowIntensity;
+        }
+
+        brightness = min(brightness, dist * 100);
+
+        ray.origin += ray.direction * dist;
+        rayDist += dist;
+    }
+
+    return shadowIntensity + (1 - shadowIntensity) * brightness;
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     uint width, height;
     Result.GetDimensions(width, height);
+    //Result[id.xy] = Source[id.xy];
+
     float2 uv = float2(id.xy / float2(width, height) * 2.0f - 1.0f);
     
     Ray ray = CreateCameraRay(uv);
+
     float3 result = float3(0, 0, 0);
     float rayDist = 0;
     int marchSteps = 0;
+    bool tooLarge = true;
 
     while (rayDist < maxDist){
         marchSteps++;
@@ -164,13 +207,31 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         float distance = sceneInfo.w;
 
         if(distance <= minDist){
+            // Lighting
             float3 onSurface = ray.origin + ray.direction * distance;
+            float3 normal = EstimateNormal(onSurface - ray.direction * minDist);
+            //float3 lightDirection = -_DirectionalLight;
+            float diffuseLighting = saturate(dot(normal, -_DirectionalLight));
+
             float3 colour = sceneInfo.xyz;
 
-            Result[id.xy] = float4(colour, 1);
+            // Shadow
+            ray.origin = onSurface + normal * minDist * 50;
+            ray.direction = -_DirectionalLight;
+            float shadow = GetShadow(ray, maxDist);
+
+            Result[id.xy] = float4(colour * diffuseLighting * shadow, 1);
+            tooLarge = false;
+            break;
         }
 
         ray.origin += ray.direction * distance;
         rayDist += distance;
+    }
+    if (tooLarge){
+        float theta = acos(ray.direction.y) / -PI;
+        float phi = atan2(ray.direction.x, -ray.direction.z) / -PI * 0.5f;
+        float3 skyboxSampled = _SkyboxTexture.SampleLevel(sampler_SkyboxTexture, float2(phi, theta), 0);
+        Result[id.xy] = float4(skyboxSampled, 1);   
     }
 }

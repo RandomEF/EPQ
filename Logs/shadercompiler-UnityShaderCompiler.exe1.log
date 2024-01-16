@@ -2,99 +2,191 @@ Base path: 'C:/EshanStuff/Game Creation/Unity/Unity Editors/2022.3.1f1/Editor/Da
 Cmd: initializeCompiler
 
 Cmd: compileComputeKernel
-  insize=3994 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 2 plat 4 at RayMarchingShader.compute(13): syntax error: unexpected token 'Shape'
+  insize=5478 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(127): undeclared identifier 'Combine'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=3994 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 2 plat 4 at RayMarchingShader.compute(17): syntax error: unexpected token 'struct'
+  insize=5478 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(150): syntax error: unexpected token 'point'
+  error: 2 plat 4 at RayMarchingShader.compute(152): 'WholeSceneInfo': no matching 0 parameter function
+  error: 2 plat 4 at RayMarchingShader.compute(152): syntax error: unexpected token 'point'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=3999 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 2 plat 4 at RayMarchingShader.compute(80): 'distance': no matching 1 parameter intrinsic function; Possible intrinsic functions are: distance(floatM|halfM|min10floatM|min16floatM, floatM|halfM|min10floatM|min16floatM)
+  insize=5484 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(150): syntax error: unexpected token 'point'
+  error: 2 plat 4 at RayMarchingShader.compute(152): 'WholeSceneInfo': no matching 0 parameter function
+  error: 2 plat 4 at RayMarchingShader.compute(152): syntax error: unexpected token 'point'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=3997 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 2 plat 4 at RayMarchingShader.compute(85): 'length': no matching 0 parameter intrinsic function; Possible intrinsic functions are: length(floatM|halfM|min10floatM|min16floatM)
-  error: 2 plat 4 at RayMarchingShader.compute(85): syntax error: unexpected token ';'
+  insize=5644 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(154): undeclared identifier 'pointLocationLocation'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=3998 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(85): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(114): undeclared identifier 'numShapes'
+  insize=5636 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(151): 'normalize': no matching 0 parameter intrinsic function; Possible intrinsic functions are: normalize(floatM|halfM|min10floatM|min16floatM)
+  error: 2 plat 4 at RayMarchingShader.compute(155): syntax error: unexpected token ')'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=4073 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(85): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(119): syntax error: unexpected token '{'
-  error: 2 plat 4 at RayMarchingShader.compute(123): undeclared identifier 'closestDist'
+  insize=5635 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+ ok=1 outsize=2758
+
+Cmd: compileComputeKernel
+  insize=5913 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(181): implicit truncation of vector type
+ ok=1 outsize=11339
+
+Cmd: compileComputeKernel
+  insize=6102 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(181): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(195): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(196): undeclared identifier 'normal'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=4074 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(85): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(123): undeclared identifier 'closestDist'
+  insize=6109 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(181): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(195): implicit truncation of vector type
+ ok=1 outsize=11507
+
+Cmd: compileComputeKernel
+  insize=6110 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(93): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(181): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(195): implicit truncation of vector type
+ ok=1 outsize=11511
+
+Cmd: compileComputeKernel
+  insize=5991 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(94): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(101): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(184): implicit truncation of vector type
+ ok=1 outsize=11369
+
+Cmd: compileComputeKernel
+  insize=6242 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(98): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(105): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(188): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(202): undeclared identifier 'PI'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=4070 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(85): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(128): cannot convert from 'struct RayHit' to 'float3'
+  insize=6292 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(190): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(206): incorrect number of arguments to numeric-type constructor
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=4070 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(85): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(132): undeclared identifier 'dist'
+  insize=6300 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(190): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(206): incorrect number of arguments to numeric-type constructor
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=4233 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(87): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(94): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(140): invalid subscript 'dist'
+  insize=6337 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(190): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(206): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(207): syntax error: unexpected token 'Result'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=4730 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(87): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(94): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(125): undeclared identifier 'numShapes'
+  insize=6338 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(190): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(206): implicit truncation of vector type
+ ok=1 outsize=12609
+
+Cmd: compileComputeKernel
+  insize=6339 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(190): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(206): implicit truncation of vector type
+ ok=1 outsize=12613
+
+Cmd: compileComputeKernel
+  insize=6314 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(190): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(206): implicit truncation of vector type
+ ok=1 outsize=12501
+
+Cmd: compileComputeKernel
+  insize=6315 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(190): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(206): implicit truncation of vector type
+ ok=1 outsize=12505
+
+Cmd: compileComputeKernel
+  insize=6321 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(191): 'dot': implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(206): implicit truncation of vector type
+ ok=1 outsize=12505
+
+Cmd: compileComputeKernel
+  insize=7089 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(181): syntax error: unexpected token 'ray'
+  error: 2 plat 4 at RayMarchingShader.compute(183): syntax error: unexpected token '}'
+  error: 2 plat 4 at RayMarchingShader.compute(189): syntax error: unexpected token '('
+  error: 2 plat 4 at RayMarchingShader.compute(192): undeclared identifier 'width'
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=4810 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(87): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(94): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(163): undeclared identifier 'dist'
+  insize=7090 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 2 plat 4 at RayMarchingShader.compute(181): syntax error: unexpected token 'ray'
+  error: 1 plat 4 at RayMarchingShader.compute(214): 'dot': implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(220): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(234): implicit truncation of vector type
  ok=0 outsize=0
 
 Cmd: compileComputeKernel
-  insize=4809 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(87): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(94): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(166): undeclared identifier 'shape'
- ok=0 outsize=0
+  insize=7091 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(214): 'dot': implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(220): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(234): implicit truncation of vector type
+ ok=1 outsize=14429
 
 Cmd: compileComputeKernel
-  insize=5583 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(99): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(141): undeclared identifier 'localColour'
- ok=0 outsize=0
+  insize=7091 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(214): 'dot': implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(220): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(234): implicit truncation of vector type
+ ok=1 outsize=14429
 
 Cmd: compileComputeKernel
-  insize=5583 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(99): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(178): undeclared identifier 'shape'
- ok=0 outsize=0
+  insize=7091 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(214): 'dot': implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(220): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(234): implicit truncation of vector type
+ ok=1 outsize=14429
 
 Cmd: compileComputeKernel
-  insize=4819 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(99): implicit truncation of vector type
-  error: 2 plat 4 at RayMarchingShader.compute(164): syntax error: unexpected token 'float'
-  error: 2 plat 4 at RayMarchingShader.compute(166): undeclared identifier 'distance'
- ok=0 outsize=0
-
-Cmd: compileComputeKernel
-  insize=4820 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(92): implicit truncation of vector type
-  error: 1 plat 4 at RayMarchingShader.compute(99): implicit truncation of vector type
- ok=1 outsize=2642
+  insize=7092 file=Assets/Shaders/RayMarchingShader.compute kernel=CSMain ppOnly=0 stripLineD=0 buildPlatform=19 km=<UNITY_VERSION=202231> pKW=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 reqs=16385 forceDXC=0 forceFXC=0  error: 1 plat 4 at RayMarchingShader.compute(100): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(107): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(214): 'dot': implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(220): implicit truncation of vector type
+  error: 1 plat 4 at RayMarchingShader.compute(234): implicit truncation of vector type
+ ok=1 outsize=14437
 
 Cmd: shutdown

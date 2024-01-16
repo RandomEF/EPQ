@@ -15,10 +15,10 @@ Implemented:
 - Cube SDF
 - Sphere SDF
 - Line SDF
-
-Need to implement:
 - Raymarcher
 - Smoothing
+
+Need to implement:
 - Boolean operations
 
 ## Rasterizing

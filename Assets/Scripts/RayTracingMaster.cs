@@ -14,14 +14,12 @@ public class RayTracingMaster : MonoBehaviour
     [SerializeField] float maxBounceNumber = 4;
     [SerializeField] Light directionalLight;
     private List<Transform> transformsWatching = new List<Transform>();
-    private bool sceneChanged = false;
 
     private ComputeBuffer _SphereBuffer;
 
     [Header("Shader Settings")]
     [SerializeField] bool useShader = true;
     [SerializeField] bool enableRandomSpheres = true;
-    [SerializeField] bool regenerateSpheres = false;
     
     [Header("Random Sphere Settings")]
     public Vector2 sphereRadius = new Vector2(3.0f, 8.0f);

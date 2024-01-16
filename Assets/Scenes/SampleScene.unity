@@ -824,7 +824,6 @@ MonoBehaviour:
   directionalLight: {fileID: 705507994}
   useShader: 0
   enableRandomSpheres: 0
-  regenerateSpheres: 0
   sphereRadius: {x: 3, y: 8}
   sphereMax: 100
   distBetweenSpheres: 100
@@ -858,6 +857,10 @@ MonoBehaviour:
   SkyboxTexture: {fileID: 2800000, guid: 1ef93574cf713054c9fb66f1292454cf, type: 3}
   directionalLight: {fileID: 705507994}
   useShader: 1
+  shapeCount: 10
+  sphereRadius: {x: 3, y: 8}
+  cubeSize: {x: 3, y: 8}
+  lineLength: {x: 3, y: 8}
 --- !u!1 &988515416
 GameObject:
   m_ObjectHideFlags: 0
